@@ -1,0 +1,1 @@
+global.Response = window.Response

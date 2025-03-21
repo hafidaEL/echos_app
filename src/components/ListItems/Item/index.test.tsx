@@ -9,6 +9,7 @@ describe('Item component', () => {
     description: 'Test Description',
     image: 'test-image.jpg',
     subscriptions: ['RIGHT1'],
+    site:'DEN'
   }
 
   it('affiche le titre et la description de l’item', () => {

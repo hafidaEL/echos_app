@@ -3,7 +3,7 @@
 
 export default {
   preset: 'ts-jest',
-  testEnvironment: 'jest-environment-jsdom',
+  testEnvironment: 'jsdom',
   transform: {
       "^.+\\.tsx?$": [ "ts-jest", {tsconfig: './tsconfig.app.json'},],
   },
@@ -11,4 +11,6 @@ export default {
       '\\.(gif|ttf|eot|svg|png)$': '<rootDir>/test/__ mocks __/fileMock.js',
       '\\.(css|less)$': 'identity-obj-proxy'
   },
+  setupFilesAfterEnv: ['./jest.setup.js'],
+
 }

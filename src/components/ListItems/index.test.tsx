@@ -5,6 +5,16 @@ import { AuthContext } from '../../contexts'
 import { NEWSLETTER_ITEMS } from '../../mocks/newsletters'
 import { USER_WITH_MULTIPLE_SUBSCRIPTION } from '../../mocks/user'
 
+beforeEach(() => {
+  global.fetch = jest.fn(() =>
+    Promise.resolve({
+      json: () => Promise.resolve(NEWSLETTER_ITEMS),
+      status: 200,
+      ok: true,
+    } as unknown as Response)
+  )
+})
+
 describe('ListItems component', () => {
   it('affiche "Loading..." puis la liste des items groupés par site', async () => {
     const mockUser = USER_WITH_MULTIPLE_SUBSCRIPTION

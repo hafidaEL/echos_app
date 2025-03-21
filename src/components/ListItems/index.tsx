@@ -1,35 +1,33 @@
 import { useContext, useEffect, useState } from "react"
 import { AuthContext } from "../../contexts"
-import { NEWSLETTER_ITEMS } from "../../mocks/newsletters"
+
 import { Typography, Container, Box, Divider } from "@mui/material"
 import { Item } from "./Item"
-
-const fetchNewsletterData = (): Promise<typeof NEWSLETTER_ITEMS> => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(NEWSLETTER_ITEMS)
-      }, 1000)
-    })
-  }
+import { Item as ItemType } from "./Item/type"
+import { AccumulatorType } from "./type"
 
 export const ListItems = () => {
   const currentUser = useContext(AuthContext)
   const userSubscriptions = currentUser?.subscriptions || []
-  const [data, setData] = useState<typeof NEWSLETTER_ITEMS| null>(null);
+  const [data, setData] = useState<ItemType[]|null>(null)
 
   useEffect(() => {
-    fetchNewsletterData().then((result) => {
-      setData(result)
+    fetch("http://localhost:3000/data")
+    .then((response) => {
+      return response.json() 
     })
+    .then((json) => { 
+      setData(json) 
+       })
   }, [])
 
   if (!data) return <Typography>Loading...</Typography>
 
-  const groupedBySite = data.reduce((acc, item) => {
+  const groupedBySite = data.reduce((acc: AccumulatorType, item: ItemType) => {
     if (!acc[item.site]) acc[item.site] = []
     acc[item.site].push(item)
     return acc
-  }, {} as Record<string, typeof NEWSLETTER_ITEMS>)
+  }, {} as Record<string, ItemType[]>)
 
   return (
     <Container data-testid="listItems">

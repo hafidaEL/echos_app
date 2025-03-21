@@ -6,10 +6,16 @@ Technical test developed in ReactJS + Material UI (with viteJS)
 
 ## 🚀 Quickstart
 
+## Backend 
+
+cd backend
+run `npm install` to install all required dependencies
+run `npm start` to start the nodejs server listening on port 3000
+
+
+## Frontend
+
 Run `npm install` to install all required dependencies
-
-### Dev commands
-
 Run `npm run dev` to start the application (the application will be available at http://localhost:5173/)
 
 to update subscription level of the user, in the file src/contexts.ts, import the wanted value and change the default value of AuthContext
@@ -26,3 +32,4 @@ Run `npm run test` to launch unit tests of the application
 ### Result screenshot
 
 ![screenshot](src/assets/appli.png)
+
